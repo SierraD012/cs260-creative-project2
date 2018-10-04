@@ -3,9 +3,97 @@
     <head>
 		<title>Creative Project 2</title>
 		
+		<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+		<!-- Our custom CSS - overrides bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="main.css">
+		<script type="text/javascript" src="scripts.js"></script>
+
+		
+		<!-- Bootstrap sources -->
+		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+	    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+		<!-- Google Fonts -->
+		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
+		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
+		
     </head>
     
     <body>
+    <!-- 
+    Ideas for trolling things that the login screen can do:
+     - ** We should have a "tryCounter" variable that keeps track of how many times they've tried to log in
+        to gradually increase how annoying it should be 
+        
+     - Swap the labels for FirstName/LastName fields right when they click Log In and tell them that Last Name is supposed to come first 
+        even though it wasn't that way a second ago
+     - Insist that email address must be an AOL one
+     - Say that passwords don't match even though they do
+     - Scramble the "confirm password" field when they click Log In so that passwords don't actually match
+     - After a while, Log In button moves to opposite side of window when they rollover it
+     - Have more fields appear after several tries, i.e. Social Security #, mother's maiden name, first pet name, Security Questions, etc.
+     - Have a captcha field ("type the letters you see") but have it either be a totally illegible blur or letters in Sanskrit or something
+     - Eventually have a finish screen? Like, congrats you didn't have a mental breakdown?
+    -->
+    
+        <div class="container">
+    			<div class="panel-heading">
+                   <div class="panel-title text-center">
+                   		<h1 class="title">BEST WEBSITE 2018</h1>
+                   	</div>
+                </div> 
+    			<div class="main-login main-center">
+    				<form class="form-horizontal" action="#">
+    					
+    					<div class="form-group">
+    						<label for="fName" class="cols-sm-2 control-label">First Name</label>
+    						<div class="cols-sm-10">
+    							<input type="text" class="form-control" name="fName" id="fName"  placeholder="First Name"/>
+    						</div>
+    					</div>
+    					
+    					<div class="form-group">
+    						<label for="lName" class="cols-sm-2 control-label">Last Name</label>
+    						<div class="cols-sm-10">
+    							<input type="text" class="form-control" name="lName" id="lName"  placeholder="Last Name"/>
+    						</div>
+    					</div>
+    
+    					<div class="form-group">
+    						<label for="email" class="cols-sm-2 control-label">Email</label>
+    						<div class="cols-sm-10">
+    							<input type="text" class="form-control" name="email" id="email"  placeholder="Email"/>
+    						</div>
+    					</div>
+    
+    					<div class="form-group">
+    						<label for="username" class="cols-sm-2 control-label">Username</label>
+    						<div class="cols-sm-10">
+    							<input type="text" class="form-control" name="username" id="username"  placeholder="Username"/>
+    						</div>
+    					</div>
+    
+    					<div class="form-group">
+    						<label for="password" class="cols-sm-2 control-label">Password</label>
+    						<div class="cols-sm-10">
+    							<input type="password" class="form-control" name="password" id="password"  placeholder="Password"/>
+    						</div>
+    					</div>
+    
+    					<div class="form-group">
+    						<label for="confirm" class="cols-sm-2 control-label">Confirm Password</label>
+    						<div class="cols-sm-10">
+    							<input type="password" class="form-control" name="confirm" id="confirm"  placeholder="Confirm Password"/>
+    						</div>
+    					</div>
+    
+    					<div class="form-group ">
+    						<button type="button" style="float: right" class="btn btn-primary">LOG IN</button> 
+    						<!-- change the float:right to float:left on rollover to make the button switch spots -->
+    					</div>
+    				</form>
+    			</div>
+    	</div>
     
     </body>
 </html>

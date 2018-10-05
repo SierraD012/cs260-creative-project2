@@ -6,9 +6,10 @@
 
 body, html{
     height: 100%;
- 	background-color: #373a42;  /* not sure why the bg color refuses to change */
+ 	background-color: #373a42;
  	font-family: 'Oxygen', sans-serif;
 }
+
 
 .main{
  	margin-top: 5px;
@@ -65,3 +66,12 @@ input::-webkit-input-placeholder {
 	font-size: 11px;
 	text-align: center;
 }
+
+.footer {
+	text-align: center;
+	font-size: 10px;
+	color: #788599;
+	font-family: 'Oxygen', sans-serif;
+}
+
+

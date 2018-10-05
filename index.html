@@ -19,23 +19,34 @@
             
             
         <script>
+            //the button calls this function onclick
             function getQuestion(){
                 ajaxAPICall(function(data) {
                     console.log(">Ajax got: " + data);
                     var triviaPrompt = "Please give the question to the following Jeopardy answer to continue login: \n" + data[0] + ":";
                     
-                    var response = prompt(triviaPrompt, "Your Answer");
+                    var userInput = prompt(triviaPrompt, "Your Answer");
                     
-                    var incorrectMessage = "Wrong again - the correct answer was: " + data[1];
+                    var randomResponse = getRandResponse();
+                    var incorrectMessage = randomResponse + "\n The correct answer was: " + data[1];
                     
+                    alert(incorrectMessage);
                     
-                    
-                    alert(incorrectMessage); //rotate between answers
+                    location.reload(true);
                 });
+            }
+            
+            function getRandResponse(){
+                var responses = [ "Wrong again", "Wow, you really suck at this, don't you?",
+                "Do you even want to log in, bro?", "You make Internet Explorer look good.",
+                "My grandma could have answered that!", "#FAIL" ];
+            
+                var min = 0;
+                var max = responses.length - 1;
+                var randIndex = Math.floor(Math.random() * (max - min)) + min;
                 
-                //go back to login and clear all fields they typed in
-                clearFields();
-                //location.reload(true); //this works
+                console.log("randIndex = " + randIndex);
+                return responses[randIndex];
             }
             
             function ajaxAPICall(callback){
@@ -56,45 +67,11 @@
                         }
                     });
             }
-            
-            function clearFields(){
-                //alert("clearFields called");
-                //this doesn't work for some reason
-                document.getElementById('fName').innerHTML = "";
-                document.getElementById('lName').innerHTML = "";
-                document.getElementById('email').innerHTML = "";
-                document.getElementById('username').innerHTML = "";
-                document.getElementById('password').innerHTML = "";
-                document.getElementById('confirm').innerHTML = "";
-                
-               // document.getElementById('fName').reset();
-            }
-                    
-            
         </script>
-            
             
     </head>
 
-    
-    
     <body>
-    <!-- 
-    Ideas for trolling things that the login screen can do:
-     - ** We should have a "tryCounter" variable that keeps track of how many times they've tried to log in
-        to gradually increase how annoying it should be 
-        
-     - Swap the labels for FirstName/LastName fields right when they click Log In and tell them that Last Name is supposed to come first 
-        even though it wasn't that way a second ago
-     - Insist that email address must be an AOL one
-     - Say that passwords don't match even though they do
-     - Scramble the "confirm password" field when they click Log In so that passwords don't actually match
-     - After a while, Log In button moves to opposite side of window when they rollover it
-     - Have more fields appear after several tries, i.e. Social Security #, mother's maiden name, first pet name, Security Questions, etc.
-     - Have a captcha field ("type the letters you see") but have it either be a totally illegible blur or letters in Sanskrit or something
-     - Eventually have a finish screen? Like, congrats you didn't have a mental breakdown?
-    -->
-    
         <div class="container">
     			<div class="panel-heading">
                    <div class="panel-title text-center">
@@ -152,6 +129,13 @@
     				</form>
     			</div>
     	</div>
+    
+    <br>
+    <hr>
+    <br>
+
+    <p class="footer">This website was created by James Christopherson and Sierra Davis.<br> We're using the jservice.io API to get Jeopardy questions.<br>
+    So, if the questions don't make sense or are formatted weird, it's their fault.</p>
     
     </body>
 </html>

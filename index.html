@@ -4,9 +4,6 @@
 		<title>Creative Project 2</title>
 		
 		<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-
-		<!-- Our custom CSS - overrides bootstrap CSS -->
-		<link rel="stylesheet" type="text/css" href="main.css">
 		
 		<!-- Bootstrap sources -->
 		<link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
@@ -15,12 +12,71 @@
 		<!-- Google Fonts -->
 		<link href='https://fonts.googleapis.com/css?family=Passion+One' rel='stylesheet' type='text/css'>
 		<link href='https://fonts.googleapis.com/css?family=Oxygen' rel='stylesheet' type='text/css'>
-            
-        <!-- our JS/JQuery files -->
-		<script src="scripts.js"></script>
 		
+		<!-- Our custom CSS - overrides bootstrap CSS -->
+		<link rel="stylesheet" type="text/css" href="main.css">
+        <script src="scripts.js"></script>
+            
+            
+        <script>
+            function getQuestion(){
+                ajaxAPICall(function(data) {
+                    console.log(">Ajax got: " + data);
+                    var triviaPrompt = "Please give the question to the following Jeopardy answer to continue login: \n" + data[0] + ":";
+                    
+                    var response = prompt(triviaPrompt, "Your Answer");
+                    
+                    var incorrectMessage = "Wrong again - the correct answer was: " + data[1];
+                    
+                    
+                    
+                    alert(incorrectMessage); //rotate between answers
+                });
+                
+                //go back to login and clear all fields they typed in
+                clearFields();
+                //location.reload(true); //this works
+            }
+            
+            function ajaxAPICall(callback){
+                var apiURL = "http://jservice.io/api/random";
+                
+                  $.ajax({  
+                        url: apiURL,
+                        dataType: "json",
+                        success: function(parsed_JSON) {
+                            parsed_JSON = parsed_JSON[0];
+                            console.log(parsed_JSON);
+                            
+                            var question = parsed_JSON['question'];
+                            var answer = parsed_JSON['answer'];
+                            var trivia = [question, answer];
+
+                            callback(trivia);  //this returns trivia back to getQuestion()
+                        }
+                    });
+            }
+            
+            function clearFields(){
+                //alert("clearFields called");
+                //this doesn't work for some reason
+                document.getElementById('fName').innerHTML = "";
+                document.getElementById('lName').innerHTML = "";
+                document.getElementById('email').innerHTML = "";
+                document.getElementById('username').innerHTML = "";
+                document.getElementById('password').innerHTML = "";
+                document.getElementById('confirm').innerHTML = "";
+                
+               // document.getElementById('fName').reset();
+            }
+                    
+            
+        </script>
+            
+            
     </head>
 
+    
     
     <body>
     <!-- 
@@ -91,8 +147,7 @@
     					</div>
     
     					<div class="form-group ">
-    						<button type="button" id="loginBtn" style="float: right" class="btn btn-primary">LOG IN</button> 
-    						<!-- change the float:right to float:left on rollover to make the button switch spots -->
+    						<button type="button" id="loginBtn" style="float: right" class="btn btn-primary" onClick="getQuestion()">LOG IN</button> 
     					</div>
     				</form>
     			</div>
